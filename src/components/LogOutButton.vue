@@ -21,7 +21,7 @@ export default {
             token: token,
           },
         })
-        .then((res) => {
+        .then(() => {
           this.$root.$emit(`notification`, ``);
           cookies.remove(`token`);
           this.$router.push(`/`);

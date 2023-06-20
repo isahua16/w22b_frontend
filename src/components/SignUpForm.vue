@@ -72,7 +72,7 @@ export default {
             bio: this.$refs[`bio_input`].value,
           },
         })
-        .then((res) => {
+        .then(() => {
           this.$root.$emit(
             `notification`,
             `Sign up successful. Please log in to proceed`
