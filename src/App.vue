@@ -1,8 +1,18 @@
 <template>
   <div id="app">
+    <user-notification></user-notification>
     <router-view />
   </div>
 </template>
+
+<script>
+import UserNotification from "@/components/UserNotification.vue";
+export default {
+  components: {
+    UserNotification,
+  },
+};
+</script>
 
 <style>
 #app {

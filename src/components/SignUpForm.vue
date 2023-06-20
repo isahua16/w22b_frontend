@@ -2,33 +2,37 @@
   <div>
     <h3>Sign Up</h3>
     <input
-      class="input"
+      class="signup_input"
       type="text"
       ref="username_input"
       placeholder="Username"
     />
-    <input class="input" type="text" ref="email_input" placeholder="Email" />
     <input
-      class="input"
+      class="signup_input"
+      type="text"
+      ref="email_input"
+      placeholder="Email"
+    />
+    <input
+      class="signup_input"
       type="text"
       ref="password_input"
       placeholder="Password"
     />
     <input
-      class="input"
+      class="signup_input"
       type="text"
       ref="image_url_input"
       placeholder="Image URL"
     />
     <textarea
-      class="input"
+      class="signup_input"
       type="text"
       ref="bio_input"
       style="font-family: sans-serif"
       placeholder="Bio"
     ></textarea>
     <button @click="sign_up">Submit</button>
-    <p>{{ message }}</p>
   </div>
 </template>
 
@@ -37,7 +41,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      message: undefined,
+      input_fields: [],
     };
   },
   methods: {
@@ -47,15 +51,15 @@ export default {
       }
     },
     sign_up() {
-      this.message = ``;
-      let input_fields = document.querySelectorAll(`.input`);
-      for (let i = 0; i < input_fields.length; i++) {
-        if (input_fields[i].value === ``) {
-          this.message = `Please fill in all the fields`;
+      this.$root.$emit(`notification`, ``);
+      this.input_fields = document.querySelectorAll(`.signup_input`);
+      for (let i = 0; i < this.input_fields.length; i++) {
+        if (this.input_fields[i].value === ``) {
+          this.$root.$emit(`notification`, `Please fill in all the fields`);
           return;
         }
       }
-      this.message = `Loading...`;
+      this.$root.$emit(`notification`, `loading...`);
       axios
         .request({
           url: `${process.env.VUE_APP_BASE_DOMAIN}/api/client`,
@@ -70,13 +74,16 @@ export default {
         })
         .then((res) => {
           console.log(res);
-          this.message = `Sign up successful. Please log in to proceed`;
-          this.reset_fields(input_fields);
+          this.$root.$emit(
+            `notification`,
+            `Sign up successful. Please log in to proceed`
+          );
+          this.reset_fields(this.input_fields);
         })
         .catch((err) => {
           console.log(err);
-          this.reset_fields(input_fields);
-          this.message = `An error occured. Try again.`;
+          this.reset_fields(this.input_fields);
+          this.$root.$emit(`notification`, `An error occured. Try again.`);
         });
     },
   },
@@ -87,7 +94,6 @@ export default {
 div {
   display: grid;
   place-items: center;
-  width: 500px;
   gap: 20px;
 }
 </style>
