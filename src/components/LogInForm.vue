@@ -41,7 +41,10 @@ export default {
           return;
         }
       }
-      this.$root.$emit(`notification`, `Loading...`);
+      this.$root.$emit(
+        `notification`,
+        `<img width="35px" src="https://i.gifer.com/origin/34/34338d26023e5515f6cc8969aa027bca_w200.gif">`
+      );
       axios
         .request({
           url: `${process.env.VUE_APP_BASE_DOMAIN}/api/login`,
