@@ -52,7 +52,6 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res);
           if (res[`data`].length < 1) {
             this.$root.$emit(
               `notification`,
@@ -65,8 +64,7 @@ export default {
             this.$router.push(`/profile`);
           }
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
           this.reset_fields(this.input_fields);
           this.$root.$emit(`notification`, `Log in failed. Try again.`);
         });

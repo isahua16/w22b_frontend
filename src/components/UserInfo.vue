@@ -50,8 +50,7 @@ export default {
             this.client_info = res[`data`];
           }
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
           this.$root.$emit(
             `notification`,
             `An error occured. Try logging in again.`

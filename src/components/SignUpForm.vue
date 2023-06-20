@@ -73,15 +73,13 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res);
           this.$root.$emit(
             `notification`,
             `Sign up successful. Please log in to proceed`
           );
           this.reset_fields(this.input_fields);
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
           this.reset_fields(this.input_fields);
           this.$root.$emit(`notification`, `An error occured. Try again.`);
         });

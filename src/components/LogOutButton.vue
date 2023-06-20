@@ -22,13 +22,11 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res);
           this.$root.$emit(`notification`, ``);
           cookies.remove(`token`);
           this.$router.push(`/`);
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
           this.$root.$emit(
             `notification`,
             `An error occured. Try again later.`
