@@ -62,7 +62,7 @@ export default {
       }
       // Basic email validity check
       let email = this.$refs[`email_input`].value;
-      if (email.includes(`@`, `.`) === false) {
+      if (email.includes(`@`) === false || email.includes(`.`) === false) {
         this.$root.$emit(`notification`, `Please enter a valid email address`);
         return;
       }
