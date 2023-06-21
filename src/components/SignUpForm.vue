@@ -9,13 +9,13 @@
     />
     <input
       class="signup_input"
-      type="text"
+      type="email"
       ref="email_input"
       placeholder="Email"
     />
     <input
       class="signup_input"
-      type="text"
+      type="password"
       ref="password_input"
       placeholder="Password"
     />
@@ -52,12 +52,19 @@ export default {
     },
     sign_up() {
       this.$root.$emit(`notification`, ``);
+      // Basic empty validity check
       this.input_fields = document.querySelectorAll(`.signup_input`);
       for (let i = 0; i < this.input_fields.length; i++) {
         if (this.input_fields[i].value === ``) {
           this.$root.$emit(`notification`, `Please fill in all the fields`);
           return;
         }
+      }
+      // Basic email validity check
+      let email = this.$refs[`email_input`].value;
+      if (email.includes(`@`, `.`) === false) {
+        this.$root.$emit(`notification`, `Please enter a valid email address`);
+        return;
       }
       this.$root.$emit(
         `notification`,

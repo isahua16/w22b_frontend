@@ -44,7 +44,6 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res);
           this.$root.$emit(`notification`, ``);
           if (res[`data`].length < 1) {
             cookies.remove(`token`);

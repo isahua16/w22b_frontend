@@ -3,15 +3,17 @@
     <h3>Log In</h3>
     <input
       class="login_input"
-      type="text"
+      type="email"
       ref="username_input"
       placeholder="Username"
+      required
     />
     <input
       class="login_input"
-      type="text"
+      type="password"
       ref="password_input"
       placeholder="Password"
+      required
     />
     <button @click="log_in">Submit</button>
   </div>
